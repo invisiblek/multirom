@@ -100,6 +100,9 @@ if [ ! -e "/tmp/newboot.img" ] ; then
     return 1
 fi
 
+echo "Bumping the boot.img..."
+printf '\x41\xA9\xE4\x67\x74\x4D\x1D\x1B\xA4\x29\xF2\xEC\xEA\x65\x52\x79' >> newboot.img
+
 echo "Writing new boot.img..."
-dd bs=4096 if=/tmp/newboot.img of=$BOOT_DEV
+dd if=/tmp/newboot.img of=$BOOT_DEV
 return $?
